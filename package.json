@@ -1,0 +1,37 @@
+{
+  "name": "telescope",
+  "description": "An observable module for objects and arrays",
+  "version": "0.1.0",
+  "homepage": "https://github.com/parroit/telescope",
+  "author": {
+    "name": "parroit",
+    "email": "andrea.parodi@ebansoftware.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/parroit/telescope.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parroit/telescope/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/parroit/telescope/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/telescope",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-mocha-test": "~0.7.0",
+    "expect.js": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "keywords": []
+}
