@@ -32,11 +32,15 @@ describe("ArrayObservable", function () {
     });
 
     describe("push", function () {
-        var raised;
+        var raised,pushedItem;
+
         before(function () {
             observable.events.once("changed",function(){
-                 raised =true
-            })  ;
+                 raised =true;
+            });
+            observable.events.once("pushed",function(item){
+                pushedItem =item;
+            });
             observable.push("salve");
         });
 
@@ -47,6 +51,12 @@ describe("ArrayObservable", function () {
 
         it("emit changed event", function () {
             expect(raised).to.be.equal(true);
+
+        });
+
+        it("emit pushed event", function () {
+
+            expect(pushedItem.observed).to.be.equal("salve");
 
         });
         it("store observable value to observables", function () {
@@ -68,10 +78,13 @@ describe("ArrayObservable", function () {
         });
     });
     describe("remove", function () {
-        var raised;
+        var raised,removedItem;
         before(function () {
             observable.events.once("changed",function(){
                 raised =true
+            });
+            observable.events.once("removed",function(item){
+                removedItem =item;
             });
             observable.remove(0);
         });
@@ -80,7 +93,11 @@ describe("ArrayObservable", function () {
             expect(observable.length).to.be.equal(1);
 
         });
+        it("emit removed event", function () {
 
+            expect(removedItem.observed).to.be.equal("ciao");
+
+        });
         it("emit changed event", function () {
             expect(raised).to.be.equal(true);
 
