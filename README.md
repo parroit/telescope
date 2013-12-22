@@ -6,16 +6,55 @@ An observable module for objects and arrays
 ## Getting Started
 Install the module with: `npm install telescope --save`
 
+### To create an array observable:
+
 ```javascript
-var telescope = require('telescope');
-telescope.awesome(); // "awesome"
+makeArrayObservable = require("telescope").array;
+
+var tabs = [],
+    observableTabs = makeArrayObservable();
+
+observableTabs.init(tabs);
 ```
 
-## Documentation
-_(Coming soon)_
+`observableTabs` is an array that emits events on push or remove of items.
+
+When you push or remove items to observableTabs, they are pushed or removed from tabs array,
+plus a "changed" event is emitted.
+
+Pushing method create also an object observable on pushed item,
+that is returned from the function.
+
+
+### To create an object observable:
+
+```javascript
+    var Observable = require("telescope").object;
+
+    function ConcreteObservable(observed){
+        this.init(observed);
+    }
+    ConcreteObservable.prototype = new Observable();
+
+    var anObject = {
+       field1:1,
+       field2:2
+    };
+    var observable = new ConcreteObservable(anObject);
+```
+
+`observable` is now an object that wrap `anObject` and create a
+property for each of its property.
+
+These property set and get values of corresponding `anObject` property,
+emitting "changed" events when property values are set.
+
+The init pattern allow to setup derived property that
+are set on main property change, e.g. sum, totals, etc.
+
 
 ## Examples
-_(Coming soon)_
+See test folder for more usage exmaples
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style.
